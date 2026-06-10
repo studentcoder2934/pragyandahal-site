@@ -4,65 +4,145 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pragyan Dahal</title>
-    <meta name="description" content="Personal website of Pragyan Dahal." />
+    <meta name="description" content="Pragyan Dahal — energy, grid technology, and infrastructure." />
   </head>
-  <body>
-    <canvas id="grain"></canvas>
 
-    <main class="page">
-      <nav>
-        <a href="/">Pragyan Dahal</a>
-        <div>
-          <a href="#work">Work</a>
-          <a href="#writing">Writing</a>
-          <a href="#contact">Contact</a>
+  <body>
+    <div class="noise"></div>
+    <div class="orb orb-one"></div>
+    <div class="cursor-glow"></div>
+
+    <header class="nav">
+      <a class="logo" href="#home">Pragyan Dahal</a>
+
+      <nav class="links">
+        <a href="#home">Home</a>
+
+        <div class="dropdown">
+          <button>Research</button>
+          <div class="dropdown-menu">
+            <a href="#research">Research 1</a>
+            <a href="#research">Research 2</a>
+            <a href="#research">Research 3</a>
+          </div>
+        </div>
+
+        <a href="#essays">Essays</a>
+        <a href="#about">About</a>
+
+        <div class="dropdown">
+          <button>Products</button>
+          <div class="dropdown-menu">
+            <a href="#products">What I’m working on</a>
+          </div>
         </div>
       </nav>
+    </header>
 
-      <section class="hero">
-        <p class="eyebrow">Energy · AI Infrastructure · Systems</p>
+    <main>
+      <section id="home" class="hero reveal">
+        <p class="eyebrow">Energy · Grid Technology · Infrastructure</p>
+
         <h1>
-          Building at the edge of
-          <span>energy, compute, and civilization-scale infrastructure.</span>
+          Hello.<br />
+          I’m <span>Pragyan Dahal.</span>
         </h1>
-        <p class="subtext">
-          I’m Pragyan Dahal. I’m exploring the bottlenecks that will define the next decade:
-          power, datacenters, transmission, and frontier infrastructure.
+
+        <p class="hero-text">
+          I study energy systems, grid infrastructure, and the challenge of delivering
+          reliable, abundant energy wherever it is needed.
         </p>
-        <div class="buttons">
-          <a href="#work">See work</a>
-          <a href="mailto:hello@pragyandahal.com">Email me</a>
+
+        <p class="hero-text">
+          My work focuses on the technologies, markets, and physical systems that will
+          power the next generation of industry, artificial intelligence, and civilization.
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary" href="https://www.linkedin.com/in/pragyandahal/" target="_blank">
+            LinkedIn
+          </a>
+          <a class="secondary" href="#research">View Research</a>
         </div>
       </section>
 
-      <section id="work" class="grid">
-        <article>
-          <p>01</p>
-          <h2>Energy Systems</h2>
-          <p>Researching grid deliverability, interconnection, transmission constraints, and datacenter power demand.</p>
-        </article>
-        <article>
-          <p>02</p>
-          <h2>AI Infrastructure</h2>
-          <p>Studying the physical bottlenecks behind compute growth: power, cooling, chips, and site selection.</p>
-        </article>
-        <article>
-          <p>03</p>
-          <h2>Writing</h2>
-          <p>Publishing notes on startups, technology constraints, energy markets, and long-term industrial opportunity.</p>
-        </article>
+      <section id="research" class="section reveal">
+        <div class="section-heading">
+          <p>Research</p>
+          <h2>Research papers and technical notes.</h2>
+        </div>
+
+        <div class="cards">
+          <article>
+            <span>01</span>
+            <h3>Research 1</h3>
+            <p>Placeholder for a future research paper with charts, images, and analysis.</p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <h3>Research 2</h3>
+            <p>Placeholder for a future research paper on energy, infrastructure, or grid systems.</p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <h3>Research 3</h3>
+            <p>Placeholder for future work on datacenters, power demand, and energy delivery.</p>
+          </article>
+        </div>
       </section>
 
-      <section id="writing" class="quote">
-        <p>“The best opportunities are hidden inside constraints that everyone agrees are impossible to move.”</p>
+      <section id="essays" class="section reveal">
+        <div class="section-heading">
+          <p>Essays</p>
+          <h2>Essays and public thinking.</h2>
+        </div>
+
+        <div class="essay-list">
+          <a href="#">Essay 1 — Coming soon</a>
+          <a href="#">Essay 2 — Coming soon</a>
+          <a href="#">Essay 3 — Coming soon</a>
+        </div>
       </section>
 
-      <section id="contact" class="contact">
-        <h2>Let’s build.</h2>
-        <p>Reach me for energy, infrastructure, AI, or ambitious technical projects.</p>
-        <a href="mailto:hello@pragyandahal.com">hello@pragyandahal.com</a>
+      <section id="products" class="section reveal">
+        <div class="section-heading">
+          <p>Products</p>
+          <h2>What I’m working on.</h2>
+        </div>
+
+        <div class="empty-box">
+          <p>Product explorations will appear here soon.</p>
+        </div>
+      </section>
+
+      <section id="about" class="section about reveal">
+        <div class="section-heading">
+          <p>About</p>
+          <h2>Energy should be abundant, reliable, and accessible.</h2>
+        </div>
+
+        <p>
+          Hello, my name is Pragyan Dahal. I was born in Nepal and grew up in the
+          Dallas, Texas area. I went to high school at L. D. Bell High School in
+          Hurst, Texas, and I am currently attending Stanford University, majoring
+          in Energy Science and Engineering.
+        </p>
+
+        <p>
+          I am interested in grid technology, energy production, and energy distribution.
+          I believe energy is a right, not a privilege. Every person, entity, and
+          business should be able to access the energy they need at low cost, with
+          reliability and convenience.
+        </p>
       </section>
     </main>
+
+    <footer>
+      <p>© 2026 Pragyan Dahal</p>
+      <a href="https://www.linkedin.com/in/pragyandahal/" target="_blank">LinkedIn</a>
+    </footer>
 
     <script type="module" src="/src/main.js"></script>
   </body>
