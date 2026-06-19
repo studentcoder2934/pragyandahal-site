@@ -4,32 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pragyan Dahal — Wireless Power Technology</title>
-
-    <meta
-      name="description"
-      content="Pragyan Dahal — interested in Wireless Power Technology, microwave power transmission, beam power, and energy systems."
-    />
+    <meta name="description" content="Pragyan Dahal — Wireless Power Technology, research, projects, and thoughts." />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   </head>
 
   <body>
-    <canvas id="wpt-canvas"></canvas>
-
-    <div class="noise"></div>
-    <div class="orb orb-one"></div>
-    <div class="orb orb-two"></div>
-
     <header class="nav">
       <a href="#" class="brand">Pragyan Dahal</a>
-
-      <nav class="nav-links">
+      <nav>
         <a href="#projects">Projects</a>
         <a href="#essay">Essay</a>
         <a href="#research">Research</a>
@@ -38,144 +23,89 @@
     </header>
 
     <main>
-      <section class="hero">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Wireless Power Technology · Microwave Power Transfer · Energy Systems</p>
-
-          <h1>Hi, I’m Pragyan Dahal</h1>
-
-          <p class="hero-text">
-            I am interested in Wireless Power Technology (WPT) and am working on
-            learning more about the field, and simultaneously trying to contribute,
-            with the best that I can.
-          </p>
-
-          <p class="hero-text muted">
-            Check out my projects, research and thoughts!
-          </p>
-
-          <div class="hero-actions">
-            <a href="#projects" class="button primary">View Projects</a>
-            <a href="#research" class="button secondary">Read Research</a>
-          </div>
-        </div>
-
-        <div class="hero-panel reveal">
-          <div class="panel-label">Live concept model</div>
-          <div class="panel-title">Microwave power beaming system</div>
-          <p>
-            A visual abstraction of solar collection, RF conversion, phased-array
-            transmission, and rectenna reception.
-          </p>
-        </div>
+      <section class="hero reveal">
+        <p class="eyebrow">Wireless Power Technology</p>
+        <h1>Hi, I’m Pragyan Dahal</h1>
+        <p class="hero-text">
+          I am interested in Wireless Power Technology (WPT) and am working on
+          learning more about the field, and simultaneously trying to contribute,
+          with the best that I can.
+        </p>
+        <p class="hero-text muted">
+          Check out my projects, research and thoughts!
+        </p>
       </section>
 
-      <section class="wpt-section" id="wpt">
-        <div class="section-grid">
-          <div class="section-copy reveal">
-            <p class="eyebrow">What is WPT?</p>
-            <h2>Wireless Power Technology moves energy without physical conductors.</h2>
-          </div>
-
-          <div class="section-text reveal">
-            <p>
-              Wireless Power Technology uses electromagnetic waves to transmit
-              energy across distance. In microwave WPT, electricity is converted
-              into radio-frequency power, directed through antennas or phased
-              arrays, captured by a receiver, and converted back into usable
-              electricity.
-            </p>
-
-            <p>
-              Its long-term potential includes power delivery to remote sites,
-              drones, satellites, lunar infrastructure, disaster zones, and
-              possibly space-based solar power. The central challenge is not
-              whether power can be beamed — it is whether large systems can be
-              made efficient, safe, scalable, and economically useful.
-            </p>
-          </div>
+      <section class="intro reveal">
+        <div>
+          <p class="eyebrow">What is WPT?</p>
+          <h2>Wireless Power Technology explores how energy can move without physical conductors.</h2>
         </div>
+        <p>
+          Microwave wireless power transfer converts electricity into radio-frequency
+          energy, directs it through antennas or phased arrays, captures it through
+          receivers, and converts it back into usable electricity. Its potential
+          applications include remote power, drones, satellites, lunar infrastructure,
+          and space-based solar power.
+        </p>
       </section>
 
-      <section class="content-section" id="projects">
-        <div class="section-header reveal">
+      <section class="section" id="projects">
+        <div class="section-head reveal">
           <p class="eyebrow">Builds</p>
           <h2>Projects</h2>
-          <p>
-            Simulations, technical models, prototypes, and experiments related to
-            microwave wireless power transfer.
-          </p>
         </div>
 
-        <div class="cards">
+        <div class="grid">
           <article class="card reveal">
-            <span class="card-number">01</span>
+            <span>01</span>
             <h3>Microwave WPT Link Budget Model</h3>
-            <p>
-              A Python-based model for estimating aperture size, beam spreading,
-              received power, and end-to-end system efficiency.
-            </p>
-            <a href="#" class="card-link">GitHub coming soon →</a>
+            <p>A Python model for beam spreading, aperture size, received power, and end-to-end efficiency.</p>
+            <a href="#">GitHub coming soon →</a>
           </article>
 
           <article class="card reveal">
-            <span class="card-number">02</span>
+            <span>02</span>
             <h3>Rectenna Aperture Economics</h3>
-            <p>
-              A cost-per-delivered-watt analysis of microwave receiver tiles,
-              rectenna efficiency, and scalable aperture manufacturing.
-            </p>
-            <a href="#" class="card-link">In progress →</a>
+            <p>A cost-per-delivered-watt analysis for scalable microwave receiver tiles.</p>
+            <a href="#">In progress →</a>
           </article>
 
           <article class="card reveal">
-            <span class="card-number">03</span>
+            <span>03</span>
             <h3>Beamforming and Safety Simulator</h3>
-            <p>
-              A planned simulation environment for phased-array beam steering,
-              sidelobes, receiver alignment, and safety envelopes.
-            </p>
-            <a href="#" class="card-link">Planned →</a>
+            <p>A planned simulator for phased-array steering, sidelobes, alignment, and safety envelopes.</p>
+            <a href="#">Planned →</a>
           </article>
         </div>
       </section>
 
-      <section class="content-section" id="essay">
-        <div class="section-header reveal">
+      <section class="section" id="essay">
+        <div class="section-head reveal">
           <p class="eyebrow">Writing</p>
           <h2>Essay</h2>
-          <p>
-            Longer-form thoughts on wireless power, energy infrastructure,
-            space-based solar power, grid constraints, and deep-tech startups.
-          </p>
         </div>
 
-        <div class="feature-card reveal">
+        <article class="wide-card reveal">
           <div>
-            <p class="eyebrow">Featured essay</p>
             <h3>Why Wireless Power Transfer Matters</h3>
             <p>
               A developing essay on the technical and economic bottlenecks that
               determine whether microwave power beaming can become useful at scale.
             </p>
           </div>
-
-          <a href="#" class="button secondary">Essay coming soon</a>
-        </div>
+          <a href="#">Essay coming soon →</a>
+        </article>
       </section>
 
-      <section class="content-section" id="research">
-        <div class="section-header reveal">
-          <p class="eyebrow">Research</p>
-          <h2>Research Notes</h2>
-          <p>
-            A public record of papers, books, simulations, expert commentary, and
-            technical questions I am studying.
-          </p>
+      <section class="section" id="research">
+        <div class="section-head reveal">
+          <p class="eyebrow">Study</p>
+          <h2>Research</h2>
         </div>
 
-        <div class="research-list">
-          <article class="research-item reveal">
+        <div class="list">
+          <article class="list-item reveal">
             <div>
               <span>Research Note 001</span>
               <h3>Diffraction and aperture limits in microwave WPT</h3>
@@ -183,15 +113,15 @@
             <a href="#">Coming soon</a>
           </article>
 
-          <article class="research-item reveal">
+          <article class="list-item reveal">
             <div>
               <span>Research Note 002</span>
-              <h3>Rectenna efficiency versus real deployment conditions</h3>
+              <h3>Rectenna efficiency under real deployment conditions</h3>
             </div>
             <a href="#">Coming soon</a>
           </article>
 
-          <article class="research-item reveal">
+          <article class="list-item reveal">
             <div>
               <span>Research Note 003</span>
               <h3>Space-based solar power: launch cost versus aperture economics</h3>
@@ -201,24 +131,19 @@
         </div>
       </section>
 
-      <section class="contact-section" id="contact">
-        <div class="contact-card reveal">
-          <p class="eyebrow">Contact</p>
-          <h2>Want to contact me?</h2>
-          <p>
-            Email me at
-            <a href="mailto:progyandahal02@gmail.com">progyandahal02@gmail.com</a>.
-          </p>
+      <footer class="footer reveal" id="contact">
+        <h2>Contact</h2>
+        <p>
+          If you want to contact me, email me at
+          <a href="mailto:progyandahal02@gmail.com">progyandahal02@gmail.com</a>.
+        </p>
 
-          <div class="footer-links">
-            <a href="https://www.linkedin.com/in/pragyandahal/" target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-            <a href="#projects">Projects</a>
-            <a href="#research">Research</a>
-          </div>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/pragyandahal" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="#projects">Projects</a>
+          <a href="#research">Research</a>
         </div>
-      </section>
+      </footer>
     </main>
 
     <script type="module" src="/src/main.js"></script>
