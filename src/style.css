@@ -74,10 +74,34 @@ main {
 
 .hero {
   min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 550px;
+  gap: 80px;
+  align-items: center;
+  max-width: 1500px;
+}
+
+.hero-left {
+  max-width: 850px;
+}
+
+.hero-right {
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  max-width: 980px;
+  align-items: center;
+}
+
+.hero-right video {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 18px;
+  object-fit: cover;
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04),
+    0 40px 80px rgba(0,0,0,0.5);
 }
 
 .eyebrow {
@@ -304,5 +328,20 @@ h3 {
   .list-item {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-right {
+    order: -1;
+  }
+
+  .hero-right video {
+    max-width: 100%;
   }
 }
