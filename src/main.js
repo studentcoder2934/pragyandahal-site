@@ -22,28 +22,21 @@ if (video) {
   video.playsInline = true
   video.autoplay = true
 
-  video.play().catch(() => {
-    // Browser may block autoplay until interaction.
-  })
+  video.play().catch(() => {})
 }
 
 const updateVideoMotion = () => {
   if (!videoFrame) return
 
-  const rect = videoFrame.getBoundingClientRect()
-  const windowHeight = window.innerHeight
+  const scrollY = window.scrollY
+  const maxHeroScroll = window.innerHeight
 
-  const progress = Math.min(
-    Math.max((windowHeight - rect.top) / (windowHeight + rect.height), 0),
-    1
-  )
+  const progress = Math.min(Math.max(scrollY / maxHeroScroll, 0), 1)
 
-  const translateY = (progress - 0.5) * -36
-  const scale = 1.04 + progress * 0.045
-  const opacity = 0.84 + progress * 0.16
+  const translateY = progress * -28
+  const scale = 1 + progress * 0.08
 
   videoFrame.style.transform = `translateY(${translateY}px) scale(${scale})`
-  videoFrame.style.opacity = opacity
 }
 
 window.addEventListener('scroll', updateVideoMotion, { passive: true })
