@@ -17,21 +17,17 @@ const video = document.getElementById('heroVideo')
 const videoFrame = document.querySelector('.video-frame')
 
 if (video) {
-  video.muted = true
-  video.loop = true
-  video.playsInline = true
-  video.autoplay = true
-
-  video.play().catch(() => {})
+  video.pause()
+  video.currentTime = 0
 }
 
-const updateVideoMotion = () => {
-  if (!videoFrame) return
+const updateVideoOnScroll = () => {
+  if (!video || !video.duration || !videoFrame) return
 
-  const scrollY = window.scrollY
-  const maxHeroScroll = window.innerHeight
+  const heroScrollLength = window.innerHeight * 1.25
+  const progress = Math.min(Math.max(window.scrollY / heroScrollLength, 0), 1)
 
-  const progress = Math.min(Math.max(scrollY / maxHeroScroll, 0), 1)
+  video.currentTime = progress * video.duration
 
   const translateY = progress * -28
   const scale = 1 + progress * 0.08
@@ -39,6 +35,9 @@ const updateVideoMotion = () => {
   videoFrame.style.transform = `translateY(${translateY}px) scale(${scale})`
 }
 
-window.addEventListener('scroll', updateVideoMotion, { passive: true })
-window.addEventListener('resize', updateVideoMotion)
-updateVideoMotion()
+if (video) {
+  video.addEventListener('loadedmetadata', updateVideoOnScroll)
+  window.addEventListener('scroll', updateVideoOnScroll, { passive: true })
+  window.addEventListener('resize', updateVideoOnScroll)
+  updateVideoOnScroll()
+}
