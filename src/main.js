@@ -16,10 +16,27 @@ revealElements.forEach(el => observer.observe(el))
 const video = document.getElementById('heroVideo')
 const videoFrame = document.querySelector('.video-frame')
 
-let videoReady = false
-let ticking = false
+const isMobile = window.matchMedia('(max-width: 768px)').matches
 
-if (video) {
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max)
+}
+
+if (video && isMobile) {
+  video.muted = true
+  video.loop = true
+  video.autoplay = true
+  video.playsInline = true
+  video.setAttribute('playsinline', '')
+  video.setAttribute('webkit-playsinline', '')
+
+  video.play().catch(() => {})
+}
+
+if (video && !isMobile) {
+  let videoReady = false
+  let ticking = false
+
   video.pause()
   video.currentTime = 0
   video.removeAttribute('autoplay')
@@ -28,58 +45,45 @@ if (video) {
   video.loop = false
   video.muted = true
   video.playsInline = true
-}
 
-function clamp(value, min, max) {
-  return Math.min(Math.max(value, min), max)
-}
+  function updateVideo() {
+    ticking = false
 
-function updateVideo() {
-  ticking = false
+    if (!video || !videoFrame || !videoReady || !video.duration) return
 
-  if (!video || !videoFrame || !videoReady || !video.duration) return
+    const hero = document.querySelector('.hero')
+    if (!hero) return
 
-  const hero = document.querySelector('.hero')
-  if (!hero) return
+    const heroRect = hero.getBoundingClientRect()
+    const heroHeight = hero.offsetHeight
 
-  const heroRect = hero.getBoundingClientRect()
-  const heroHeight = hero.offsetHeight
+    const progress = clamp(
+      -heroRect.top / (heroHeight - window.innerHeight * 0.2),
+      0,
+      1
+    )
 
-  /*
-    Progress is based only on the hero section.
+    const targetTime = progress * video.duration
 
-    Top of page: 0
-    End of hero: 1
-  */
-  const progress = clamp(
-    -heroRect.top / (heroHeight - window.innerHeight * 0.2),
-    0,
-    1
-  )
+    if (Math.abs(video.currentTime - targetTime) > 0.03) {
+      video.currentTime = targetTime
+    }
 
-  const targetTime = progress * video.duration
+    const translateY = progress * -28
+    const scale = 1 + progress * 0.08
 
-  if (Math.abs(video.currentTime - targetTime) > 0.03) {
-    video.currentTime = targetTime
+    videoFrame.style.transform = `translateY(${translateY}px) scale(${scale})`
+
+    video.pause()
   }
 
-  const translateY = progress * -28
-  const scale = 1 + progress * 0.08
-
-  videoFrame.style.transform = `translateY(${translateY}px) scale(${scale})`
-
-  // Force the video to never free-play.
-  video.pause()
-}
-
-function requestUpdate() {
-  if (!ticking) {
-    ticking = true
-    requestAnimationFrame(updateVideo)
+  function requestUpdate() {
+    if (!ticking) {
+      ticking = true
+      requestAnimationFrame(updateVideo)
+    }
   }
-}
 
-if (video) {
   video.addEventListener('loadedmetadata', () => {
     videoReady = true
     video.pause()
