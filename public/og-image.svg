@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+ <rect width="1200" height="630" fill="#f7f5ef"/>
+ <path d="M65 102H1135M65 551H1135" stroke="#d9d7cd"/>
+ <text x="65" y="69" font-family="Georgia,serif" font-size="28" fill="#272d28">Pragyan Dahal.</text>
+ <text x="65" y="170" font-family="Arial,sans-serif" font-size="13" letter-spacing="2" fill="#626960">SOFTWARE, SYSTEMS &amp; THE BUILT WORLD</text>
+ <g font-family="Georgia,serif" font-size="66" fill="#272d28"><text x="65" y="262">The physical world</text><text x="65" y="340">should be</text><text x="65" y="418" font-style="italic" fill="#3f5547">easier to build.</text></g>
+ <text x="65" y="491" font-family="Arial,sans-serif" font-size="17" fill="#626960">Writing, questions, and things I've tried building.</text>
+ <g fill="none" stroke="#77846f" stroke-width="1.7">
+ <path d="M845 416L958 356L1071 416L958 479Z" fill="#e8e5da"/>
+ <path d="M855 410V278L958 223L1061 278V410M958 472V333L855 278M958 333L1061 278M958 223V356M855 347L958 403L1061 347"/>
+ <path d="M835 223L958 158L1081 223L958 288Z" fill="#eeeae0"/><path d="M835 223V232L958 297L1081 232V223M958 288V297"/>
+ </g>
+ <text x="65" y="594" font-family="Arial,sans-serif" font-size="13" fill="#626960">First year at Stanford</text>
+</svg>

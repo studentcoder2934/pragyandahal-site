@@ -1,109 +1,96 @@
 import './style.css'
 
-const revealElements = document.querySelectorAll('.reveal')
+const button = document.querySelector('.menu-toggle')
+const nav = document.querySelector('.site-nav')
+if (button && nav) {
+  document.documentElement.classList.add('js')
+  const close = () => {
+    button.setAttribute('aria-expanded', 'false')
+    button.querySelector('.sr-only').textContent = 'Open navigation'
+    nav.classList.remove('is-open')
+  }
+  button.addEventListener('click', () => {
+    const opening = button.getAttribute('aria-expanded') !== 'true'
+    button.setAttribute('aria-expanded', String(opening))
+    button.querySelector('.sr-only').textContent = opening ? 'Close navigation' : 'Open navigation'
+    nav.classList.toggle('is-open', opening)
+  })
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+      close()
+      button.focus()
+    }
+  })
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.site-header')) close()
+  })
+  window.matchMedia('(min-width: 701px)').addEventListener('change', event => {
+    if (event.matches) close()
+  })
+}
 
-const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible')
+const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
+if (!motion.matches && 'IntersectionObserver' in window) {
+  // Stagger small groups, keeping paragraphs and reading order untouched.
+  document.querySelectorAll('.essay-grid, .project-grid, .question-list').forEach(group => {
+    [...group.children].forEach((child, index) => {
+      child.style.setProperty('--reveal-delay', `${Math.min(index, 3) * 85}ms`)
     })
-  },
-  { threshold: 0.14 }
-)
-
-revealElements.forEach(el => observer.observe(el))
-
-const video = document.getElementById('heroVideo')
-const videoFrame = document.querySelector('.video-frame')
-
-const isMobile = window.matchMedia('(max-width: 768px)').matches
-
-function clamp(value, min, max) {
-  return Math.min(Math.max(value, min), max)
-}
-
-if (video && isMobile) {
-  video.muted = true
-  video.loop = true
-  video.autoplay = true
-  video.playsInline = true
-  video.setAttribute('playsinline', '')
-  video.setAttribute('webkit-playsinline', '')
-
-  video.play().catch(() => {})
-}
-
-if (video && !isMobile) {
-  let videoReady = false
-  let ticking = false
-
-  video.pause()
-  video.currentTime = 0
-  video.removeAttribute('autoplay')
-  video.removeAttribute('loop')
-  video.autoplay = false
-  video.loop = false
-  video.muted = true
-  video.playsInline = true
-
-  function updateVideo() {
-    ticking = false
-
-    if (!video || !videoFrame || !videoReady || !video.duration) return
-
-    const hero = document.querySelector('.hero')
-    if (!hero) return
-
-    const heroRect = hero.getBoundingClientRect()
-    const heroHeight = hero.offsetHeight
-
-    const progress = clamp(
-      -heroRect.top / (heroHeight - window.innerHeight * 0.2),
-      0,
-      1
-    )
-
-    const targetTime = progress * video.duration
-
-    if (Math.abs(video.currentTime - targetTime) > 0.03) {
-      video.currentTime = targetTime
+  })
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('awaiting-reveal')
+        observer.unobserve(entry.target)
+      }
     }
+  }, { threshold: 0.08, rootMargin: '0px 0px -35px 0px' })
+  document.querySelectorAll('[data-reveal]').forEach(element => {
+    if (element.getBoundingClientRect().top > window.innerHeight) {
+      element.classList.add('awaiting-reveal')
+      observer.observe(element)
+    }
+  })
 
-    const translateY = progress * -28
-    const scale = 1 + progress * 0.08
+  const modelObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('model-in-view')
+        modelObserver.unobserve(entry.target)
+      }
+    }
+  }, { threshold: 0.18 })
+  document.querySelectorAll('[data-model]').forEach(model => {
+    model.classList.add('model-armed')
+    modelObserver.observe(model)
+  })
 
-    videoFrame.style.transform = `translateY(${translateY}px) scale(${scale})`
-
-    video.pause()
+  // Small changes to the exploded model's spacing follow the actual scroll.
+  const hero = document.querySelector('.hero')
+  const drawing = document.querySelector('.hero-figure')
+  let pendingFrame = false
+  const updateHero = () => {
+    pendingFrame = false
+    if (!hero || !drawing || motion.matches) return
+    const box = hero.getBoundingClientRect()
+    const progress = Math.max(0, Math.min(1, -box.top / box.height))
+    drawing.style.setProperty('--roof-offset', `${progress * -34}px`)
+    drawing.style.setProperty('--base-offset', `${progress * 12}px`)
   }
-
-  function requestUpdate() {
-    if (!ticking) {
-      ticking = true
-      requestAnimationFrame(updateVideo)
+  const onScroll = () => {
+    if (!pendingFrame) {
+      pendingFrame = true
+      window.requestAnimationFrame(updateHero)
     }
   }
-
-  video.addEventListener('loadedmetadata', () => {
-    videoReady = true
-    video.pause()
-    video.currentTime = 0
-    updateVideo()
+  if (hero && drawing) window.addEventListener('scroll', onScroll, { passive: true })
+  motion.addEventListener('change', event => {
+    if (event.matches) {
+      document.querySelectorAll('.awaiting-reveal').forEach(element => element.classList.remove('awaiting-reveal'))
+      document.querySelectorAll('.model-armed').forEach(element => element.classList.remove('model-armed', 'model-in-view'))
+      observer.disconnect()
+      modelObserver.disconnect()
+      window.removeEventListener('scroll', onScroll)
+    }
   })
-
-  video.addEventListener('loadeddata', () => {
-    videoReady = true
-    video.pause()
-    updateVideo()
-  })
-
-  video.addEventListener('play', () => {
-    video.pause()
-  })
-
-  window.addEventListener('scroll', requestUpdate, { passive: true })
-  window.addEventListener('resize', requestUpdate)
-  window.addEventListener('load', requestUpdate)
-
-  requestUpdate()
 }
